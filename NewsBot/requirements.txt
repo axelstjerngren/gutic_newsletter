@@ -1,0 +1,3 @@
+summa
+pptx
+PyQt5
