@@ -28,7 +28,7 @@ The basic workflow of using the bot is as follows.
 7. Five articles should be added. Pictures can now also be added by drag and drop. The picture functionality is slightly broken.
 8. Press *create*. The programme will ask you to choose a directory for the output. The newsletter will be porduced as .pptx file and can manually be saved to a desirable format (.pdf/.jpg).
 
-###### Sample Out
+###### Sample Output
 ![alt text](https://i.imgur.com/l856sMN.png)
 
 
