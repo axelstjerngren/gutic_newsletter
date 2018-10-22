@@ -15,6 +15,9 @@ To get started, follow these simple steps:
 ###### Using the the tool
 When you run newsbot.py, you should be presented with a simple GUI. 
 
+![alt text](https://i.imgur.com/DXYFLto.png)
+
+
 The basic workflow of using the bot is as follows.
 1. Enter the title of the article in the **Article Title** field.
 2. Paste the article text in the **Insert text** field. 
