@@ -8,7 +8,7 @@ from pptx_library import python_pptx_funcs
 class pptx_output():
 	def __init__(self, titles, articles, pics, savefolder):
 
-		self.prs = Presentation(os.getcwd() + "/resources/rough_template.pptx")
+		self.prs = Presentation(os.getcwd() + "/resources/rough_template.pptx") #Fetch template slide
 		for slide in self.prs.slides:
 			self.slide = slide
 		self.add_titles(titles)
@@ -31,7 +31,7 @@ class pptx_output():
 		if len(pics) == 0:
 			return
 		for shape in self.slide.shapes:
-			if counter == 5:
+			if counter == 5: #Stop looping after five pics added
 				break
 			if shape.is_placeholder:
 				phf = shape.placeholder_format
