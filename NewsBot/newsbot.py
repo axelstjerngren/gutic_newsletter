@@ -31,6 +31,7 @@ class NewsBotGUI(QWidget):
 		self.show()
 
 	def input(self):
+		#Create all the input fields
 		self.titleBox = QLineEdit(self)
 		self.titleBox.setGeometry(10,30,200,20)
 
@@ -51,6 +52,7 @@ class NewsBotGUI(QWidget):
 
 
 	def labels(self):
+		#Create all static labels
 		titleLab = QLabel( self)
 		titleLab.setGeometry( 10, 10, 200, 20 )
 		titleLab.setText('<b>Article Title </b>')
@@ -77,8 +79,10 @@ class NewsBotGUI(QWidget):
 		#logoLab.setGeometry(50, 40, 250, 250)
 		#pixmap = QPixmap(os.getcwd() + "/gutic_logo.png")
 		#logoLab.setPixmap(pixmap)
+		#Put the GUTIC logo in the coner, dome back and finish later
 
 	def buttons(self):
+		#Initialise all the buttons
 		ouputButton = QPushButton('Create', self)   
 		ouputButton.clicked.connect(self.produce_putput) 
 		ouputButton.setGeometry(430,410,210,40)
@@ -101,7 +105,7 @@ class NewsBotGUI(QWidget):
 
 	def summarise(self):
 		input_text = self.inputBox.toPlainText()
-		if input_text != "":
+		if input_text != "": #If there is text, summarise it
 			summary = summarize(input_text, words = 50)
 		else:
 			summary = ""
@@ -109,7 +113,7 @@ class NewsBotGUI(QWidget):
 		self.summaryBox.clear()
 		self.summaryBox.insertPlainText(summary)
 
-	def accept_input(self):
+	def accept_input(self): 
 		article = self.summaryBox.toPlainText()
 		title   = self.titleBox.text()
 		if title == "" or article == "":
@@ -123,7 +127,8 @@ class NewsBotGUI(QWidget):
 		self.articleList.addItem(title)
 		self.all_data.add_articles(article, title)
 		self.article_index.append(title)
-
+		
+		#Clear everything for a new article
 		self.titleBox.clear()
 		self.inputBox.clear()
 		self.summaryBox.clear()
@@ -135,7 +140,7 @@ class NewsBotGUI(QWidget):
 	
 	def delete_article(self):
 		listItems=self.articleList.selectedItems()
-		if not listItems:
+		if not listItems: #Check if a list item has actually been slected
 			return
 		for item in listItems:
 			self.articleList.takeItem(self.articleList.row(item))
@@ -160,7 +165,7 @@ class NewsBotGUI(QWidget):
 		self.set_save_folder()
 		print(self.all_data.articles)
 		print(self.all_data.titles)
-		if len(self.all_data.articles) == 5:
+		if len(self.all_data.articles) == 5: #Five articles required for template
 			titles     = self.all_data.titles
 			articles   = self.all_data.articles
 			pics       = self.all_data.pics
@@ -168,12 +173,13 @@ class NewsBotGUI(QWidget):
 			pptx_output(titles, articles, pics, savefolder)
 
 		else:
-			self.test()
+			self.test() #An error function should be implemented
 			
 	def test(self):
 		print("This button works")
 
 class DragAndDropLabel(QLabel):
+	#A class to hadnle drag and drop events
 	def __init__(self, title, parent):
 		super().__init__(title, parent)
 		self.parent = parent
@@ -192,7 +198,6 @@ class DragAndDropLabel(QLabel):
 			self.parent.add_picture_drag_and_drop(path)
 
 if __name__ == '__main__':
-    # All Qt apps need a QApplication object
     app = QApplication(sys.argv)
     ex = NewsBotGUI()
     sys.exit(app.exec_())
